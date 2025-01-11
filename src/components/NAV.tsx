@@ -32,11 +32,11 @@ export default function Nav() {
       {/* Center section (Navigation Links) */}
       <nav className="flex gap-4 md:gap-6 text-gray-700 font-medium md:text-[16px] sm:text-[14px] text-[10px] ">
         <Link href="/featured" className="hover:text-black whitespace-nowrap">New & Featured</Link>
-        <Link href="#" className="hover:text-black whitespace-nowrap">Men</Link>
-        <Link href="#" className="hover:text-black whitespace-nowrap">Women</Link>
-        <Link href="#" className="hover:text-black whitespace-nowrap">Kids</Link>
-        <Link href="#" className="hover:text-black whitespace-nowrap">Sale</Link>
-        <Link href="#" className="hover:text-black whitespace-nowrap">SNKRS</Link>
+        <Link href="/featured" className="hover:text-black whitespace-nowrap">Men</Link>
+        <Link href="/featured" className="hover:text-black whitespace-nowrap">Women</Link>
+        <Link href="/featured" className="hover:text-black whitespace-nowrap">Kids</Link>
+        <Link href="/featured" className="hover:text-black whitespace-nowrap">Sale</Link>
+        <Link href="/snkrs" className="hover:text-black whitespace-nowrap">SNKRS</Link>
       </nav>
 
       {/* Right section (Search, Wishlist, Cart) */}
