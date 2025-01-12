@@ -7,7 +7,7 @@ export function FeaturedCard() {
     <div className="flex flex-wrap gap-y-10">
       {feature.map((item) => (
         <div key={item.id} className=" md:basis-1/3 lg:basis-1/8">
-          <Link href={""}>
+          <Link href={`/product/${item.id}`}>
             <div className="p-1">
               <div>
                 <div className=" bg-[#F5F5F5] aspect-square group p-0">
