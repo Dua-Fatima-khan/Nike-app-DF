@@ -89,7 +89,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             {/* Size Selection */}
             <div className="w-full mt-5">
-              <div className="text-sm flex justify-between w-96 py-3">
+              <div className="text-sm flex justify-between w-full py-3 lg:w-96">
                 <p>Select Size</p>
                 <p>Size Guide</p>
               </div>
