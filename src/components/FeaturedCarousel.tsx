@@ -19,7 +19,7 @@ export function FeaturedCarousel() {
       opts={{
         align: "start",
       }}
-      className="w-full"
+      className="w-full p-10"
     >
       <CarouselContent>
         {airMax.map((item) => (

@@ -26,9 +26,7 @@ type Product = {
 };
 
 interface ProductPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>; // Params is a Promise
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
@@ -36,19 +34,18 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProduct = () => {
+    const fetchProduct = async () => {
       try {
-        const { id } = params; // Extract the id
+        const { id } = await params; // Await the promise
         const fetchedProduct = products.find((prod) => prod.id === id);
         if (fetchedProduct) {
           setProduct(fetchedProduct);
         } else {
           setError("Product not found");
         }
-      } catch (error: unknown) {
-        setError("Error fetching product details");
-        // Log error for debugging purposes
-        console.error(error);
+      } catch (err: unknown) {
+        setError("Error resolving params or fetching product");
+        console.error(err);
       }
     };
 
@@ -80,7 +77,6 @@ export default function ProductPage({ params }: ProductPageProps) {
 
           {/* Right: Product Details */}
           <div className="w-[35%]">
-            {/* Top Section */}
             <div>
               <h2 className="text-xl font-semibold">{product.name}</h2>
               <p className="text-sm font-semibold">{product.category}</p>
@@ -141,7 +137,6 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Accordion */}
             <div className="mt-7">
               <Accordion type="single" collapsible>
-                {/* Shipping & Returns */}
                 <AccordionItem value="item-1">
                   <AccordionTrigger className="text-lg font-semibold">
                     Shipping & Returns
@@ -153,7 +148,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                   </AccordionContent>
                 </AccordionItem>
 
-                {/* Reviews */}
                 <AccordionItem value="item-2">
                   <AccordionTrigger className="text-lg font-semibold">
                     <span>Reviews</span>
@@ -164,7 +158,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="space-y-4">
-                    {/* Review 1 */}
                     <div>
                       <div className="w-full flex items-center justify-between">
                         <div className="flex gap-1 justify-center items-center">
@@ -179,7 +172,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                       </p>
                     </div>
 
-                    {/* Review 2 */}
                     <div>
                       <div className="w-full flex items-center justify-between">
                         <div className="flex gap-1 justify-center items-center">
@@ -200,7 +192,6 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </main>
 
-        {/* Featured Carousel */}
         <div className="p-10">
           <h3 className="text-xl text-neutral-800 font-bold py-4">Explore more</h3>
           <FeaturedCarousel />
