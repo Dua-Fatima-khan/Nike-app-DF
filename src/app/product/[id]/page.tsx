@@ -76,7 +76,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
 
           {/* Right: Product Details */}
-          <div className="w-[35%]">
+          <div className="w-full p-10 lg:w-[35%] xl:w-[35%]">
             <div>
               <h2 className="text-xl font-semibold">{product.name}</h2>
               <p className="text-sm font-semibold">{product.category}</p>
@@ -106,7 +106,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
 
             {/* Add to Bag & Favourite Buttons */}
-            <div className="w-full flex justify-center items-center flex-col py-5 gap-3">
+            <div className="w-full flex justify-center items-center flex-col  py-5 gap-3">
               <Button className="rounded-full w-full">Add to Bag</Button>
               <Button className="rounded-full w-full bg-white text-black border">
                 Favourite
