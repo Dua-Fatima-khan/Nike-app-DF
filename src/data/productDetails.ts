@@ -21,7 +21,7 @@ import jordan3 from "../../public/details/jordan3.png";
 import jordan4 from "../../public/details/jordan4.png";
 
 interface PRODUCTS {
-  id: number;
+  id: string;
   name: string;
   category: string;
   price: number;
@@ -33,7 +33,7 @@ interface PRODUCTS {
 
 export const products: PRODUCTS[] = [
   {
-    id: 1,
+    id: "1",
     name: "Nike Air Force 1 Mid '07",
     category: "Men's Shoes",
     price: 125,
@@ -43,7 +43,7 @@ export const products: PRODUCTS[] = [
     image4: airforce4,
   },
   {
-    id: 2,
+    id: "2",
     name: "Nike Court Vision Low Next Nature",
     category: "Men's Shoes",
     price: 4995,
@@ -53,7 +53,7 @@ export const products: PRODUCTS[] = [
     image4: court4,
   },
   {
-    id: 3,
+    id: "3",
     name: "Nike Air Force 1 PLT.AF.ORM",
     category: "Women's Shoes",
     price: 8995,
@@ -63,7 +63,7 @@ export const products: PRODUCTS[] = [
     image4: airblue4,
   },
   {
-    id: 4,
+    id: "4",
     name: "Nike Air Force 1 React",
     category: "Men's Shoes",
     price: 97.97,
@@ -73,7 +73,7 @@ export const products: PRODUCTS[] = [
     image4: react4,
   },
   {
-    id: 5,
+    id: "5",
     name: "Air Jordan 1 Elevate Low",
     category: "Women's Shoes",
     price: 11895,
