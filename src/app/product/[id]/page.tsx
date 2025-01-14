@@ -1,20 +1,12 @@
 "use client";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
 import { shoesize } from "@/data/size";
 import { Button } from "@/components/ui/button";
-import { FeaturedCarousel } from "@/components/FeaturedCarousel";
-import { IoStarSharp } from "react-icons/io5";
 import { products } from "@/data/productDetails";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { StaticImageData } from "next/image";
-
 type Product = {
   id: string;
   name: string;
@@ -24,6 +16,7 @@ type Product = {
   image2: StaticImageData;
   image3: StaticImageData;
   image4: StaticImageData;
+  inStock: boolean; // Add inStock property to Product type
 };
 
 interface ProductPageProps {
@@ -33,7 +26,10 @@ interface ProductPageProps {
 export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
- const [cartData, setCartData]=useState();
+  const [selectedSize, setSelectedSize] = useState<string | null>(null); // Track selected size
+  const { addToCart } = useCart(); // Use the addToCart function from CartContext
+  const { addToWishlist, wishlistItems } = useWishlist(); // Use the addToWishlist function from WishlistContext
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -53,14 +49,35 @@ export default function ProductPage({ params }: ProductPageProps) {
     fetchProduct();
   }, [params]);
 
+  // Handle size selection
+  const handleSizeSelection = (size: string) => {
+    setSelectedSize(size);
+  };
+
+  // Add to cart or wishlist based on stock availability
+  const handleAddToCartOrWishlist = (product: Product) => {
+    console.log("Adding product:", product); // Debugging
+    if (!selectedSize) {
+      alert("Please select a size before adding to cart or wishlist.");
+      return;
+    }
+
+    if (product.inStock) {
+      // Add to cart if the product is in stock
+      addToCart(product);
+      alert(`${product.name} (Size: ${selectedSize}) added to cart!`);
+    } else {
+      // Add to wishlist if the product is out of stock
+      addToWishlist(product);
+      alert(`${product.name} (Size: ${selectedSize}) added to wishlist!`);
+    }
+  };
+
+  // Check if the product is already in the wishlist
+  const isProductInWishlist = product ? wishlistItems.some((item) => item.id === product.id) : false;
+
   if (error) return <h1>{error}</h1>;
   if (!product) return <h1>Loading...</h1>;
-
-// Add to cart
-const handleAddToCart = (product) => {
-  setCartData(product)
-  console.log(product)
-};
 
   return (
     <>
@@ -104,7 +121,10 @@ const handleAddToCart = (product) => {
                 {shoesize.map((size) => (
                   <Button
                     key={size.id}
-                    className="bg-white text-neutral-600 border hover:bg-white"
+                    className={`bg-white text-neutral-600 border hover:bg-white ${
+                      selectedSize === size.name ? "bg-gray-200" : ""
+                    }`}
+                    onClick={() => handleSizeSelection(size.name)}
                   >
                     {size.name}
                   </Button>
@@ -112,15 +132,26 @@ const handleAddToCart = (product) => {
               </div>
             </div>
 
-            {/* Add to Bag & Favourite Buttons */}
-            <div className="w-full flex justify-center items-center flex-col  py-5 gap-3">
-              <Button    onClick={()=>handleAddToCart(product)} className="rounded-full w-full">Add to Bag</Button>
-              <Button className="rounded-full w-full bg-white text-black border">
-                Favourite
-              </Button>
-              <p className="text-sm text-neutral-700 text-center max-w-80">
-                This product is excluded from site promotions and discounts.
-              </p>
+            {/* Add to Bag & Wishlist Buttons */}
+            <div className="w-full flex justify-center items-center flex-col py-5 gap-3">
+              {product.inStock ? (
+                // Show "Add to Bag" button if the product is in stock
+                <Button
+                  onClick={() => handleAddToCartOrWishlist(product)}
+                  className="rounded-full w-full"
+                >
+                  Add to Bag
+                </Button>
+              ) : (
+                // Show "Add to Wishlist" button if the product is out of stock
+                <Button
+                  onClick={() => handleAddToCartOrWishlist(product)}
+                  className="rounded-full w-full bg-gray-200 text-black"
+                  disabled={isProductInWishlist} // Disable if already in wishlist
+                >
+                  {isProductInWishlist ? "Added to Wishlist" : "Add to Wishlist"}
+                </Button>
+              )}
             </div>
 
             {/* Shipping Details */}
@@ -140,69 +171,8 @@ const handleAddToCart = (product) => {
                 <li>Style: CT8532-001</li>
               </div>
             </div>
-
-            {/* Accordion */}
-            <div className="mt-7">
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-lg font-semibold">
-                    Shipping & Returns
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Free standard shipping on orders $50+ and free 60-day returns
-                    for Nike Members. Learn more. Return policy exclusions apply.
-                    Pick-up available at select Nike Stores.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2">
-                  <AccordionTrigger className="text-lg font-semibold">
-                    <span>Reviews</span>
-                    <div className="flex gap-1 justify-end items-center w-full">
-                      {[...Array(5)].map((_, i) => (
-                        <IoStarSharp key={i} />
-                      ))}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="space-y-4">
-                    <div>
-                      <div className="w-full flex items-center justify-between">
-                        <div className="flex gap-1 justify-center items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <IoStarSharp key={i} />
-                          ))}
-                        </div>
-                        <div className="text-xs text-gray-700">Antb1989 - Dec 24, 2024</div>
-                      </div>
-                      <p className="text-gray-700 text-sm mt-2">
-                        Great deal exactly what they was described as, definitely worth the price.
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="w-full flex items-center justify-between">
-                        <div className="flex gap-1 justify-center items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <IoStarSharp key={i} />
-                          ))}
-                        </div>
-                        <div className="text-xs text-gray-700">Ameer - Dec 20, 2024</div>
-                      </div>
-                      <p className="text-gray-700 text-sm mt-2">
-                        I love my shoes and they came earlier than I expected. Thank you so much!
-                      </p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
           </div>
         </main>
-
-        <div className="p-10">
-          <h3 className="text-xl text-neutral-800 font-bold py-4">Explore more</h3>
-          <FeaturedCarousel />
-        </div>
       </section>
     </>
   );

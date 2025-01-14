@@ -1,10 +1,11 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/NAV";
 import Footer from "@/components/FOOTER";
 import { CartProvider } from "@/context/CartContext";
-
+import { WishlistProvider } from "@/context/WishlistContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,16 +27,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CartProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* Wrap the entire app with CartProvider */}
+        <CartProvider>
+        <WishlistProvider>
+
           <Nav />
           {children}
           <Footer />
-        </body>
-      </html>
-    </CartProvider>
+          </WishlistProvider>
+
+        </CartProvider>
+      </body>
+    </html>
   );
 }

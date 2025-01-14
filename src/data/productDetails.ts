@@ -21,6 +21,7 @@ import jordan3 from "../../public/details/jordan3.png";
 import jordan4 from "../../public/details/jordan4.png";
 
 interface PRODUCTS {
+  inStock: boolean; // Add inStock property to Product type
   id: string;
   name: string;
   category: string;
@@ -37,6 +38,7 @@ export const products: PRODUCTS[] = [
     name: "Nike Air Force 1 Mid '07",
     category: "Men's Shoes",
     price: 125,
+    inStock: true,
     image1: airforce1,
     image2: airforce2,
     image3: airforce3,
@@ -47,6 +49,7 @@ export const products: PRODUCTS[] = [
     name: "Nike Court Vision Low Next Nature",
     category: "Men's Shoes",
     price: 4995,
+    inStock: false,
     image1: court1,
     image2: court2,
     image3: court3,
@@ -57,6 +60,7 @@ export const products: PRODUCTS[] = [
     name: "Nike Air Force 1 PLT.AF.ORM",
     category: "Women's Shoes",
     price: 8995,
+    inStock: true,
     image1: airblue1,
     image2: airblue2,
     image3: airblue3,
@@ -67,6 +71,7 @@ export const products: PRODUCTS[] = [
     name: "Nike Air Force 1 React",
     category: "Men's Shoes",
     price: 97.97,
+    inStock: false,
     image1: react1,
     image2: react2,
     image3: react3,
@@ -77,6 +82,7 @@ export const products: PRODUCTS[] = [
     name: "Air Jordan 1 Elevate Low",
     category: "Women's Shoes",
     price: 11895,
+    inStock: true,
     image1: jordan1,
     image2: jordan2,
     image3: jordan3,
