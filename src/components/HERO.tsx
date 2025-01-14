@@ -15,7 +15,7 @@ export default function Hero(){
             <h3 className="text-xl text-black font-bold">Hello Nike App</h3>
          <p className="text-sm text-gray-600" >
          <span>Download the app to access everything Nike.</span>{" "}
-           <Link href={"/"}> Get Your Great</Link>
+           <Link href={"/product"}> Get Your Great</Link>
         </p>
             </div>
             <Image src={"/Hero.png"} alt={"shoes"} width={1344} height={700}/>
@@ -30,7 +30,7 @@ export default function Hero(){
            
                 </p>
                 <div className="flex justify-center items-center gap-3"><Button>Notify Me</Button>
-                <Button>Shop Air Max</Button></div>
+               <Link href={"/product"}> <Button>Shop Air Max</Button></Link></div>
             </div>
         </section>
         {/* carousel */}
@@ -56,7 +56,7 @@ export default function Hero(){
           Cause everyone should know the feeling of running in that perfect
           pair.
         </p>
-        <Button>Find Your Shoe</Button>
+     <Link href={"/product"}>   <Button>Find Your Shoe</Button></Link>
       </div>
     </section>
     {/* gearup carousel */}
@@ -74,7 +74,7 @@ export default function Hero(){
       <div className="flex flex-col justify-center items-center space-y-5 pt-10">
           <h1 className="font-semibold text-2xl md:text-4xl">FLIGHT ESSENTIALS</h1>
           <h2 className="text-[9px] md:text-sm">Your built-to-last,all-week wears—but with style only Jordan Brand can deliver.</h2>
-          <Button className="rounded-full">Shop</Button>
+<Link href={"/product"}>          <Button className="rounded-full">Shop</Button></Link>
       </div>
   </section>
   {/* essentials */}
@@ -86,15 +86,15 @@ export default function Hero(){
         {/* e1 */}
       <div className="relative">
       <Image width={300} height={300} alt="" src={"/essential/e1.png"} />
-      <Button className="rounded-full text-black bg-white absolute left-5 bottom-5 hover:bg-white/80">Men&apos;s</Button>
+    <Link href={"/product"}>  <Button className="rounded-full text-black bg-white absolute left-5 bottom-5 hover:bg-white/80">Men&apos;s</Button></Link>
       </div> {/* e2 */}
       <div className="relative">
       <Image width={300} height={300} alt="" src={"/essential/e2.png"} />
-      <Button className="rounded-full text-black bg-white absolute left-5 bottom-5 hover:bg-white/80">Women&apos;s</Button>
+  <Link href={"/product"}>    <Button className="rounded-full text-black bg-white absolute left-5 bottom-5 hover:bg-white/80">Women&apos;s</Button></Link>
       </div> {/* e3 */}
       <div className="relative">
       <Image width={300} height={300} alt="" src={"/essential/e3.png"} />
-      <Button className="rounded-full text-black bg-white absolute left-5 bottom-5 hover:bg-white/80">Kid&apos;s</Button>
+    <Link href={"/product"}>  <Button className="rounded-full text-black bg-white absolute left-5 bottom-5 hover:bg-white/80">Kid&apos;s</Button></Link>
       </div>
 
       </div>

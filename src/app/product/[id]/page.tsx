@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
+import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { shoesize } from "@/data/size";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ interface ProductPageProps {
 export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
-
+ const [cartData, setCartData]=useState();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -54,6 +55,12 @@ export default function ProductPage({ params }: ProductPageProps) {
 
   if (error) return <h1>{error}</h1>;
   if (!product) return <h1>Loading...</h1>;
+
+// Add to cart
+const handleAddToCart = (product) => {
+  setCartData(product)
+  console.log(product)
+};
 
   return (
     <>
@@ -107,7 +114,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             {/* Add to Bag & Favourite Buttons */}
             <div className="w-full flex justify-center items-center flex-col  py-5 gap-3">
-              <Button className="rounded-full w-full">Add to Bag</Button>
+              <Button    onClick={()=>handleAddToCart(product)} className="rounded-full w-full">Add to Bag</Button>
               <Button className="rounded-full w-full bg-white text-black border">
                 Favourite
               </Button>
