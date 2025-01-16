@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { IoStarSharp } from "react-icons/io5";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
@@ -7,7 +8,15 @@ import { shoesize } from "@/data/size";
 import { Button } from "@/components/ui/button";
 import { products } from "@/data/productDetails";
 import { StaticImageData } from "next/image";
+import { FeaturedCarousel } from "@/components/FeaturedCarousel";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 type Product = {
+
   id: string;
   name: string;
   category: string;
@@ -170,9 +179,71 @@ export default function ProductPage({ params }: ProductPageProps) {
                 <li>Shown: Black/White/Dark Charcoal</li>
                 <li>Style: CT8532-001</li>
               </div>
+ {/* Accordion */}
+ <div className="mt-7">
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-lg font-semibold">
+                    Shipping & Returns
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Free standard shipping on orders $50+ and free 60-day returns
+                    for Nike Members. Learn more. Return policy exclusions apply.
+                    Pick-up available at select Nike Stores.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="text-lg font-semibold">
+                    <span>Reviews</span>
+                    <div className="flex gap-1 justify-end items-center w-full">
+                      {[...Array(5)].map((_, i) => (
+                        <IoStarSharp key={i} />
+                      ))}
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4">
+                    <div>
+                      <div className="w-full flex items-center justify-between">
+                        <div className="flex gap-1 justify-center items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <IoStarSharp key={i} />
+                          ))}
+                        </div>
+                        <div className="text-xs text-gray-700">Antb1989 - Dec 24, 2024</div>
+                      </div>
+                      <p className="text-gray-700 text-sm mt-2">
+                        Great deal exactly what they was described as, definitely worth the price.
+                      </p>
+                    </div>
+
+                    <div>
+                      <div className="w-full flex items-center justify-between">
+                        <div className="flex gap-1 justify-center items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <IoStarSharp key={i} />
+                          ))}
+                        </div>
+                        <div className="text-xs text-gray-700">Ameer - Dec 20, 2024</div>
+                      </div>
+                      <p className="text-gray-700 text-sm mt-2">
+                        I love my shoes and they came earlier than I expected. Thank you so much!
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+         
+
+      
             </div>
           </div>
         </main>
+        <div className="p-10">
+          <h3 className="text-xl text-neutral-800 font-bold py-4">Explore more</h3>
+          <FeaturedCarousel />
+        </div>
       </section>
     </>
   );
