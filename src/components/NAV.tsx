@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FaSearch, FaHeart, FaShoppingBag } from "react-icons/fa";
+import {  FaHeart, FaShoppingBag } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import ProductSearch from "./SeachBar";
