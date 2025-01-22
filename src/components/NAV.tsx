@@ -106,18 +106,7 @@ export default function Nav() {
     </Link>
         </div>
       </div>
-
-      {/* Mobile Search Bar */}
-      <div className="block md:hidden px-6 mt-2">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search"
-            className="border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none w-full"
-          />
-          <FaSearch className="absolute right-3 top-2.5 text-gray-500" />
-        </div>
-      </div>
+    
     </header>
   );
 }
