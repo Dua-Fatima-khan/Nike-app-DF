@@ -1,0 +1,48 @@
+[
+  {
+    "fields": [
+      {
+        "name": "productName",
+        "type": "string"
+      },
+      {
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "name": "price",
+        "type": "number"
+      },
+      {
+        "name": "inventory",
+        "type": "number"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "colors",
+        "type": "array"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "product",
+    "type": "document"
+  }
+]
