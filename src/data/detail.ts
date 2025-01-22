@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-interface Items {
+export interface Items {
   id: number;
   img: StaticImageData;
   title: string;

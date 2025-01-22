@@ -32,15 +32,15 @@ export default function Cart() {
           ) : (
             cartItems.map((item) => (
               <div
-                key={item.product.id} // Use product.id as the key
-                className="flex  flex-wrap gap-5 justify-between px-2 py-5 border-b border-gray-200"
+                key={item.product._id} // Use product._id as the key
+                className="flex flex-wrap gap-5 justify-between px-2 py-5 border-b border-gray-200"
               >
                 {/* Left box */}
                 <div className="flex gap-5">
                   <div>
                     <Image
-                      src={item.product.image1} // Use image1 from the product
-                      alt={item.product.name}
+                      src={item.product.image}
+                      alt={item.product.productName}
                       width={150}
                       height={150}
                       className="shadow-md"
@@ -48,7 +48,7 @@ export default function Cart() {
                   </div>
                   <div>
                     <h2 className="text-gray-700 font-semibold">
-                      {item.product.name}
+                      {item.product.productName}
                     </h2>
                     <div className="text-sm text-gray-600 space-y-1 py-2">
                       <p>{item.product.category}</p>
@@ -60,7 +60,7 @@ export default function Cart() {
                           min="1"
                           onChange={(e) =>
                             handleQuantityChange(
-                              item.product.id,
+                              item.product._id,
                               parseInt(e.target.value)
                             )
                           }
@@ -72,7 +72,7 @@ export default function Cart() {
                       <FaRegHeart size={20} className="cursor-pointer" />
                       <RiDeleteBin5Line
                         size={20}
-                        onClick={() => removeFromCart(item.product.id)} // Use product.id
+                        onClick={() => removeFromCart(item.product._id)} // Use product._id
                         className="cursor-pointer"
                       />
                     </div>
@@ -94,27 +94,27 @@ export default function Cart() {
           ) : (
             wishlistItems.map((item) => (
               <div
-                key={item.id}
+                key={item._id} // Use item._id as the key
                 className="flex justify-between items-center py-4 border-b"
               >
                 <div className="flex gap-4">
                   <Image
-                    src={item.image1}
-                    alt={item.name}
+                    src={item.image}
+                    alt={item.productName}
                     width={100}
                     height={100}
                     className="shadow-md"
                   />
                   <div>
-                    <h3 className="text-lg font-semibold">{item.name}</h3>
+                    <h3 className="text-lg font-semibold">{item.productName}</h3>
                     <p className="text-sm text-gray-600">{item.category}</p>
                   </div>
                 </div>
                 <Button
-                  onClick={() => removeFromWishlist(item.id)}
+                  onClick={() => removeFromWishlist(item._id)} // Use item._id
                   className="text-red-600 hover:text-red-800 bg-white"
                 >
-                 <RiDeleteBin5Line size={20}/>
+                  <RiDeleteBin5Line size={20} />
                 </Button>
               </div>
             ))
@@ -123,7 +123,7 @@ export default function Cart() {
       </div>
 
       {/* Right: Order Summary */}
-      <div className=" w-full lg:w-[25%] xl:w-[25%]">
+      <div className="w-full lg:w-[25%] xl:w-[25%]">
         <div>
           <h2 className="text-xl font-semibold text-gray-800 py-5">Summary</h2>
         </div>

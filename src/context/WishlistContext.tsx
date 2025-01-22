@@ -36,7 +36,7 @@ export const WishlistProvider = ({ children }: Props) => {
   // Add a product to the wishlist
   const addToWishlist = (product: Product) => {
     setWishlistItems((prevItems) => {
-      if (prevItems.some((item) => item.id === product.id)) {
+      if (prevItems.some((item) => item._id === product._id)) {
         return prevItems; // Product already in wishlist
       }
       return [...prevItems, product];
@@ -46,7 +46,7 @@ export const WishlistProvider = ({ children }: Props) => {
   // Remove a product from the wishlist
   const removeFromWishlist = (productId: string) => {
     setWishlistItems((prevItems) =>
-      prevItems.filter((item) => item.id !== productId)
+      prevItems.filter((item) => item._id !== productId)
     );
   };
 

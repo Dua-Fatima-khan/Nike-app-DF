@@ -39,7 +39,7 @@ export const CartProvider = ({ children }: Props) => {
   const addToCart = (product: Product) => {
     setCartItems((prevItems) => {
       const existingCartItemIndex = prevItems.findIndex(
-        (item) => item.product.id === product.id
+        (item) => item.product._id === product._id
       );
 
       if (existingCartItemIndex !== -1) {
@@ -60,7 +60,7 @@ export const CartProvider = ({ children }: Props) => {
   // Remove a product from the cart
   const removeFromCart = (productId: string) => {
     setCartItems((prevItems) =>
-      prevItems.filter((item) => item.product.id !== productId)
+      prevItems.filter((item) => item.product._id !== productId)
     );
   };
 
@@ -68,7 +68,7 @@ export const CartProvider = ({ children }: Props) => {
   const updateCartItemQuantity = (productId: string, quantity: number) => {
     setCartItems((prevItems) => {
       const existingCartItemIndex = prevItems.findIndex(
-        (item) => item.product.id === productId
+        (item) => item.product._id === productId
       );
 
       if (existingCartItemIndex !== -1) {
