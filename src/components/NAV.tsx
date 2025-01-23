@@ -81,7 +81,7 @@ export default function Nav() {
         {/* Right section (Search, Wishlist, Cart) */}
         <div className="flex items-center gap-4 mt-4 md:mt-0">
           {/* Search Bar */}
-          <div className="relative hidden md:block">
+          <div className="relative md:block">
            <ProductSearch/>
           </div>
             {/* Wishlist Icon */}
