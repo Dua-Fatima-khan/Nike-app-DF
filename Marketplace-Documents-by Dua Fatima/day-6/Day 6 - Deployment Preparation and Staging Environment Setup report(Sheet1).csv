@@ -1,0 +1,7 @@
+Test Case ID,Description,Steps,Expected Result,Actual Result,Status,Remarks,,,,,,,,,
+TC001,Validate product listing,Open product page > Verify products are displayed,Products displayed correctly,Products displayed correctly,Passed,No issues found,,,,,,,,,
+TC002,Test API error handling,Disconnect API > Refresh page,Show fallback UI with error message,Error message shown,Passed,Handled gracefully,,,,,,,,,
+TC003,Check cart functionality,Add product to cart > Verify cart contents,Cart updates with added product,Cart updates as expected,Passed,Works as expected,,,,,,,,,
+TC004,Test responsiveness,Resize browser window > Check layout,Layout adjusts properly,Layout adjusts properly,Passed,Responsive verified,,,,,,,,,
+TC005,Test checkout flow,Add product to cart > Proceed to checkout > Enter payment details,Order placed successfully,Order placed successfully,Passed,Checkout flow works smoothly,,,,,,,,,
+TC006,Validate security,Enter malicious input in search bar > Verify no injection attacks occur,Input sanitized and safe,Input sanitized and safe,Passed,Security measures in place,,,,,,,,,
